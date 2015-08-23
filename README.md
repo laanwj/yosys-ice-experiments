@@ -11,7 +11,7 @@ iceprog X.bin # flash and run FPGA bitstream
 python x.py   # run host component
 ```
 
-The python scripts require Python 3 and python3-serial (some may work in Python 2, no guarantees).
+The python scripts require Python 3 and python3-serial (some may work in Python 2, no guarantees). They are supposed to auto-detect the USB serial port that the iCEstick is connected to, although this will only work if there is only one such device connected.
 
 Installing toolchain
 ======================
