@@ -1,0 +1,22 @@
+set_io TXD 8
+set_io RXD 9
+set_io clk 21
+set_io resetq 3
+
+# Red LEDs
+set_io LED0 99
+set_io LED1 98
+set_io LED2 97
+#set_io LED3 96
+# Green LED
+set_io LED4 95
+
+# PMOD OLED module connected
+set_io PMOD_CS 78
+set_io PMOD_SDIN 79
+set_io PMOD_SCLK 81
+set_io PMOD_DC 87
+set_io PMOD_RES 88
+set_io PMOD_VBATC 90
+set_io PMOD_VDDC 91
+

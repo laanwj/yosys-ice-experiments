@@ -1,0 +1,7 @@
+*.blif
+*.txt
+*.ex
+*.bin
+*.pyc
+__pycache__
+
