@@ -44,7 +44,8 @@ Experiment driving Digilent PmodOLED module (128x32 grid SSD1306 module), using 
 FPGA acts as SPI controller driven from host.
 
 - `pmodoled2.v` main verilog source
-- `pmodoled2.py` simple tests
+- `pmodoled2.py` simple test screens
 - `mandelbrot.py` zoom into random points on Mandelbrot set
 - `rawbench.py` measure FPS
+- `clear.py` clear screen and exit
 

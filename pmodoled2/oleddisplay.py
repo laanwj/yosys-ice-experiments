@@ -1,11 +1,16 @@
-#!/usr/bin/python3
+# Copyright (c) 2015 Wladimir J. van der Laan
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+'''
+Serial OLED display driving logic.
+'''
 from __future__ import division,print_function
 import serial,sys,time
 from imagefont import ImageFont
 from util import bin8,load_bw_image,tile_image,detect_serial
 from display import BaseDisplay
 
-# Value bits
+# Flag bits
 CS   = (1<<4) # chip select if low
 DC   = (1<<3)  # command if low, data if high
 RES  = (1<<2)  # reset if low
@@ -45,6 +50,8 @@ class OledDisplay(BaseDisplay):
         self.spi([0x8D,0x14]) # charge pump
         self.spi([0xD9,0xF1]) # precharge
         # 4. Clear screen.
+        self.spi([0x20,0x00]) # horizontal addressing mode
+        self.spi([0x22,0x00,0x03]) # page start and end address (create wraparound at line 32)
         self.set_image([[0]*self.width for x in range(self.height)])
         # 5. Apply power to VBAT.
         self.update(off=VBATC)
@@ -61,11 +68,7 @@ class OledDisplay(BaseDisplay):
         # Debugging:
         #spi(0xA5) # full display
         #spi(0xA4) # display according to memory
-
-        self.spi([0x20,0x00]) # horizontal addressing mode
         #spi([0x20,0x01]) # vertical addressing mode
-
-        self.spi([0x22,0x00,0x03]) # page start and end address (create wraparound at line 32)
 
     def update(self, off=0, on=0):
         self.value &= ~off
@@ -90,11 +93,10 @@ class OledDisplay(BaseDisplay):
             ptr += n
   
     def set_image(self, data):
-        data = tile_image(data)
+        '''Send 128x32 image to display.
+        Input must be 128x32 array of booleans or 0/1.
+        '''
         self.update(on=DC) # send display data
-
-        # Send image
-        self.spi(data)
-
+        self.spi(tile_image(data))
         self.update(off=DC) # back to command mode
 

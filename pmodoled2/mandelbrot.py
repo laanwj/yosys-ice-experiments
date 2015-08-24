@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 '''
-Much smoother Mandelbrot rendering using numpy.
+Smooth Mandelbrot rendering using numpy.
 '''
 from __future__ import division,print_function
 from display import ConsoleDisplay

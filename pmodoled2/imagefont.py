@@ -1,7 +1,9 @@
-'''Simple image font'''
 # Copyright (c) 2015 Wladimir J. van der Laan
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
+'''
+Simple image font
+'''
 # TODO: support different image formats than RGBA
 from __future__ import division,print_function
 from PIL import Image
