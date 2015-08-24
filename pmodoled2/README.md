@@ -4,6 +4,13 @@
 - iCE40HX-1k FPGA, programmed using open source FPGA toolchain Yosys + Arachne-pnr + IceStorm
 - Image generated using Python script, sent from PC through FTDI serial-over-USB 1000000 baud
 
+```
++------+         +------------+        +------+      +---------+
+| Host |<------->| FTDI 2232H |------->| FPGA |----->| Display |
++------+   USB   +------------+ Serial +------+ SPI  +---------+
+                                1M baud         (pmod conn)
+```
+
 PmodOLED
 ------------
 
