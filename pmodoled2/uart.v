@@ -1,3 +1,9 @@
+// Copyright (c) 2015 James Bowman
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+// Borrowed from https://github.com/jamesbowman/swapforth/blob/master/j1a/icestorm/uart.v
+
 `default_nettype none
 
 module baudgen(
