@@ -87,7 +87,7 @@ class OledDisplay(BaseDisplay):
         # Data is clocked from bit 7 (MSB) to bit 0 (LSB)
         ptr = 0
         while ptr < len(data_values):
-            n = min(len(data_values), 16)
+            n = min(len(data_values)-ptr, 16)
             self.conn.write(bytearray([0b00010000 | (n-1)] + data_values[ptr:ptr+n]))
             # print('SPI %02x %s' % (0b00010000 | (n-1), binascii.b2a_hex(bytearray(data_values[ptr:ptr+n]))))
             ptr += n
