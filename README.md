@@ -72,6 +72,7 @@ The FPGA acts as SPI controller driven from host.
 - `mandelbrot.py` zoom into random points on Mandelbrot set
 - `rawbench.py` measure FPS
 - `clear.py` clear screen and exit
+- `cursestest.py` type input (read using ncurses) directly to display
 
 [README](pmodoled2/README.md)
 
