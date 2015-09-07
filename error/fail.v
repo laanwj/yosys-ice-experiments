@@ -9,13 +9,13 @@ module top(input clk,
            output TXD,        // UART TX
            input RXD,         // UART RX
 
-           input resetq,
+           input resetq
 );
     localparam MHZ = 12;
 
     // ######   UART   ##########################################
     //
-    reg uart0_valid, uart0_busy;
+    wire uart0_valid, uart0_busy;
     wire [7:0] uart0_data_in;
     wire [7:0] uart0_data_out;
     wire uart0_wr;
@@ -58,10 +58,10 @@ module top(input clk,
         .INIT_C(256'h0000000000000000000000000000000000000000000000000000000000000000),
         .INIT_D(256'h0000000000000000000000000000000000000000000000000000000000000000),
         .INIT_E(256'h0000000000000000000000000000000000000000000000000000000000000000),
-        .INIT_F(256'h0000000000000000000000000000000000000000000000000000000000000000),
+        .INIT_F(256'h0000000000000000000000000000000000000000000000000000000000000000)
     ) _rom (
         .RDATA(rom_rd),
-        .RADDR(rom_raddr),
+        .RADDR({2'b00, rom_raddr}),
         .RCLK(clk), .RCLKE(1'b1), .RE(1'b1),
         .WCLK(1'b0), .WCLKE(1'b0), .WE(1'b0),
         .WADDR(11'h0),
