@@ -1,0 +1,4 @@
+set_io TXD 8
+set_io RXD 9
+set_io clk 21
+set_io resetq 3
