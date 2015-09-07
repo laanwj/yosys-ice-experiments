@@ -28,6 +28,13 @@ The combination of low cost and readily available tooling makes it very attracti
 Installing toolchain
 ======================
 
+Install dependencies (see `yosys/README`):
+```bash
+$ yosys_deps="build-essential clang bison flex libreadline-dev gawk
+       tcl-dev libffi-dev git mercurial graphviz xdot pkg-config python3"
+$ sudo apt-get install $yosys_deps
+```
+
 I use the following script to fetch, build and install the toolchain to a local `/opt` path.
 
 ```bash
