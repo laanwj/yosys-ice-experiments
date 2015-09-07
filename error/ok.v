@@ -43,8 +43,8 @@ module top(input clk,
     SB_RAM40_4KNRNW #(
         .WRITE_MODE(1), // 8 bit
         .READ_MODE(1),  // 8 bit
-        .INIT_0(256'h028a28aa28e029a5287729c028e65ac01f600a9e0a220a9b0a800a1a239a029f),
-        .INIT_1(256'h000000000000000000000000000000000000000000000000008828a20a00228a),
+        .INIT_0(256'h0000000000400105005501400044504015400014008828bb28a028b028362895),
+        .INIT_1(256'h0000000000000000000000000000000000000000000000000000000000000000),
         .INIT_2(256'h0000000000000000000000000000000000000000000000000000000000000000),
         .INIT_3(256'h0000000000000000000000000000000000000000000000000000000000000000),
         .INIT_4(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -84,13 +84,18 @@ module top(input clk,
     reg [8:0] ptr_saved;
     reg [7:0] outb;
     reg outf;
-    reg [2:0] state;
+    reg [2:0] state = S_IDLE;
     reg [7:0] opcode;
     reg [7:0] cpuregs [3:0];
 
     always @(posedge clk) begin
         case (state)
             S_IDLE: begin
+                // "a" to start
+                if (uart0_valid && uart0_data_in == "a") begin
+                    ptr <= 9'h0;
+                    state <= S_OP;
+                end
             end
             S_OP: begin
                 opcode <= rom_rdb;
@@ -163,11 +168,6 @@ module top(input clk,
                 state <= S_OP;
             end
         endcase
-        // "a" to start
-        if (uart0_valid && uart0_data_in == "a") begin
-            ptr <= 9'h0;
-            state <= S_OP;
-        end
     end
 
     // Reset logic

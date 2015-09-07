@@ -17,7 +17,7 @@ def interleave_ram(d_in):
         d_out[ptr >> 4] |= interleave8(d_in[ptr], d_in[ptr|256]) << ((ptr&15)*16)
     return d_out
 
-s = b'\x1b[38;5;48mhello\x1b[0m\n'
+s = b'hello\n'
 
 d = bytearray(512)
 ptr = 0
