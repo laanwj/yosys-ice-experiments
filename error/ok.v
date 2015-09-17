@@ -62,8 +62,8 @@ module top(input clk,
     ) _rom (
         .RDATA(rom_rd),
         .RADDR({2'b00, rom_raddr}),
-        .RCLK(clk), .RCLKE(1'b1), .RE(1'b1),
-        .WCLK(1'b0), .WCLKE(1'b0), .WE(1'b0),
+        .RCLKN(clk), .RCLKE(1'b1), .RE(1'b1),
+        .WCLKN(1'b0), .WCLKE(1'b0), .WE(1'b0),
         .WADDR(11'h0),
         .MASK(16'h0000), .WDATA(16'h0));
     assign rom_rdb = {rom_rd[14],rom_rd[12],rom_rd[10],rom_rd[8],rom_rd[6],rom_rd[4],rom_rd[2],rom_rd[0]}; // read byte

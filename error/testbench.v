@@ -4,8 +4,11 @@ module testbench;
 	localparam CLOCK_FREQ_HZ = 12e6;
 	localparam BAUD_RATE = 115200;
 
-	reg clk = 1;
-	always #(0.5e9 / CLOCK_FREQ_HZ) clk = ~clk;
+	reg clk = 0;
+	initial begin
+		#(1.5e9 / CLOCK_FREQ_HZ);
+		forever #(0.5e9 / CLOCK_FREQ_HZ) clk = ~clk;
+	end
 
 	reg resetq = 0;
 	initial begin
@@ -39,6 +42,27 @@ module testbench;
 		repeat (100) #(1e9 / BAUD_RATE);
 		$finish;
 
+	end
+
+	reg [7:0] tx_buffer;
+	integer i;
+
+	always begin
+		// tx start bit
+		@(negedge TXD);
+		#(0.5e9 / BAUD_RATE);
+
+		// tx data bits
+		tx_buffer = 0;
+		for (i = 0; i < 8; i = i+1) begin
+			#(1e9 / BAUD_RATE);
+			tx_buffer = tx_buffer | (TXD << i);
+		end
+
+		if (tx_buffer < 32)
+			$display("TX char: hex %02x", tx_buffer);
+		else
+			$display("TX char: '%c'", tx_buffer);
 	end
 
 	top uut (
