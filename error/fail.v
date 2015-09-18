@@ -84,7 +84,7 @@ module top(input clk,
     reg [8:0] ptr_saved;
     reg [7:0] outb;
     reg outf;
-    reg [2:0] state = S_IDLE;
+    reg [2:0] state;
     reg [7:0] opcode;
     reg [7:0] cpuregs [3:0];
 
@@ -168,12 +168,10 @@ module top(input clk,
                 state <= S_OP;
             end
         endcase
-    end
-
-    // Reset logic
-    always @(posedge clk) begin
+        // Reset logic
         if (!uart0_reset) begin // Reset UART only for one clock
             uart0_reset <= 1;
+            state <= S_IDLE;
         end
     end
 
