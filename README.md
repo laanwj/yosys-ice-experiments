@@ -83,3 +83,15 @@ The FPGA acts as SPI controller driven from host.
 
 [README](pmodoled2/README.md)
 
+Links
+==========
+
+Tutorials:
+
+- http://hackaday.com/2015/08/19/learning-verilog-on-a-25-fpga-part-i/
+- http://hackaday.com/2015/07/28/open-source-fpga-toolchain-builds-cpu/
+
+Other projects that work with, or are mainly developed with this toolchain:
+
+- https://github.com/jamesbowman/swapforth (fits on 1k variant)
+- https://github.com/cliffordwolf/picorv32 (fits on 8k variant)
