@@ -20,12 +20,10 @@ module top(input clk,
     wire [7:0] uart0_data_out;
     wire uart0_wr;
     wire uart0_rd;
-    wire [31:0] uart_baud = 115200;
     reg uart0_reset = 1'b0;
-    buart #(.CLKFREQ(MHZ * 1000000)) _uart0 (
+    buart _uart0 (
      .clk(clk),
      .resetq(uart0_reset),
-     .baud(uart_baud),
      .rx(RXD),
      .tx(TXD),
      .rd(uart0_rd),
